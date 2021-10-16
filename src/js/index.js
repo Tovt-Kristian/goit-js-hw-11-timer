@@ -1,11 +1,8 @@
-const daysTimer = document.querySelector('span[data-value="days"]');
-const hoursTimer = document.querySelector('span[data-value="hours"]');
-const minsTimer = document.querySelector('span[data-value="mins"]');
-const secTimer = document.querySelector('span[data-value="secs"]');
-console.log(daysTimer);
-console.log(hoursTimer);
-console.log(minsTimer);
-console.log(secTimer);
+const daysTimer = document.querySelector('[data-value="days"]');
+const hoursTimer = document.querySelector('[data-value="hours"]');
+const minsTimer = document.querySelector('[data-value="mins"]');
+const secTimer = document.querySelector('[data-value="secs"]');
+
 
 class Timer {
     constructor(finishDate, markup) {
@@ -13,7 +10,7 @@ class Timer {
         this.finishDate = finishDate;
         this.interval = null;
         this.deltaTime = 0;
-    console.log(this.finishDate);
+    console.log('Финальная дата',this.finishDate);
     }
 
     start() {
@@ -43,13 +40,13 @@ class Timer {
         secTimer.textContent = s;
     }
 }
-const myTimer = new Timer(new Date('oct 16, 2022'), {
+const myTimer = new Timer(new Date('01 Jan, 2022'), {
     daysTimer,
     hoursTimer,
     minsTimer,
     secTimer,
 });
-console.log(myTimer);
+
 myTimer.start();
 
 // Плагин это класс CountdownTimer, экземпляр которого создает новый таймер с настройками.
