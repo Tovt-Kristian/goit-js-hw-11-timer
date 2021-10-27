@@ -12,20 +12,27 @@ class Timer {
         this.deltaTime = 0;
     console.log('Финальная дата',this.finishDate);
     }
-
+  
     start() {
-    this.interval = setInterval(() => {
-        let currentTime = Date.now();
+        this.interval = setInterval(() => {
+            let currentTime = Date.now();
+            if(currentTime < this.finishDate) {
+                this.deltaTime = this.finishDate - currentTime;
 
-        this.deltaTime = this.finishDate - currentTime;
+                const days = this.pad(Math.floor(this.deltaTime / (1000 * 60 * 60 * 24)));
+                const hours = this.pad(Math.floor((this.deltaTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+                const mins = this.pad(Math.floor((this.deltaTime % (1000 * 60 * 60)) / (1000 * 60)));
+                const sec = this.pad(Math.floor((this.deltaTime % (1000 * 60)) / 1000));
 
-        const days = this.pad(Math.floor(this.deltaTime / (1000 * 60 * 60 * 24)));
-        const hours = this.pad(Math.floor((this.deltaTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
-        const mins = this.pad(Math.floor((this.deltaTime % (1000 * 60 * 60)) / (1000 * 60)));
-        const secs = this.pad(Math.floor((this.deltaTime % (1000 * 60)) / 1000));
-
-        this.insertValues(days, hours, mins, secs);
-        }, 1000);
+                this.insertValues(days, hours, mins, sec);
+            }else {
+                clearInterval(this.interval);
+                daysTimer.textContent = '00';
+                hoursTimer.textContent = '00';
+                minsTimer.textContent = '00';
+                secTimer.textContent = '00';
+            };
+        }, 1000)
     }
 
     pad(value) {
@@ -40,7 +47,7 @@ class Timer {
         secTimer.textContent = s;
     }
 }
-const myTimer = new Timer(new Date('01 Jan, 2022'), {
+const myTimer = new Timer(new Date('27 oct, 2021 23:37:00'), {
     daysTimer,
     hoursTimer,
     minsTimer,
@@ -48,6 +55,7 @@ const myTimer = new Timer(new Date('01 Jan, 2022'), {
 });
 
 myTimer.start();
+
 
 // Плагин это класс CountdownTimer, экземпляр которого создает новый таймер с настройками.
 
