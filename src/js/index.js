@@ -47,7 +47,7 @@ class Timer {
         secTimer.textContent = s;
     }
 }
-const myTimer = new Timer(new Date('27 oct, 2021 23:37:00'), {
+const myTimer = new Timer(new Date('01 jan, 2022'), {
     daysTimer,
     hoursTimer,
     minsTimer,
